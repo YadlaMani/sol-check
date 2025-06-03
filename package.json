@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "sol-check.helloWorld",
-        "title": "Hello World"
+        "command": "sol-check.lookupSignature",
+        "title": "Solana: Lookup Signature"
       }
     ]
   },
