@@ -16,6 +16,10 @@
       {
         "command": "sol-check.lookupSignature",
         "title": "Solana: Lookup Signature"
+      },
+      {
+        "command": "sol-check.lookupToken",
+        "title": "Solana: Lookup Token"
       }
     ]
   },

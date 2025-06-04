@@ -40,7 +40,7 @@ const web3_js_1 = require("@solana/web3.js");
 function activate(context) {
     console.log('Congratulations, your extension "sol-check" is now active!');
     const connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)("devnet"), "confirmed");
-    const disposable = vscode.commands.registerCommand("sol-check.lookupSignature", async () => {
+    const signatureInfoCommand = vscode.commands.registerCommand("sol-check.lookupSignature", async () => {
         const signature = await vscode.window.showInputBox({
             prompt: "Enter Solana Transaction Signature",
             placeHolder: "Eg: 5YyUjzZzj7c....",
@@ -64,7 +64,29 @@ function activate(context) {
             vscode.window.showErrorMessage(`Failed to fetch transaction: ${error}`);
         }
     });
-    context.subscriptions.push(disposable);
+    const tokenInfoCommand = vscode.commands.registerCommand("sol-check.lookupToken", async () => {
+        const mint = await vscode.window.showInputBox({
+            prompt: "Enter Token Mint Address",
+            placeHolder: "Eg: So11111111111111111111111111111111111111112",
+        });
+        if (!mint) {
+            vscode.window.showErrorMessage("No mint address provided.");
+            return;
+        }
+        try {
+            const tokenInfo = await connection.getParsedAccountInfo(new web3_js_1.PublicKey(mint));
+            if (!tokenInfo || !tokenInfo.value) {
+                vscode.window.showErrorMessage("Token not found.");
+                return;
+            }
+            const panel = vscode.window.createWebviewPanel("tokenInfo", "Solana Token Info", vscode.ViewColumn.One, { enableScripts: true });
+            panel.webview.html = getWebviewContent(mint, tokenInfo.value);
+        }
+        catch (error) {
+            vscode.window.showErrorMessage(`Error: ${error}`);
+        }
+    });
+    context.subscriptions.push(tokenInfoCommand, signatureInfoCommand);
 }
 function deactivate() { }
 function getWebviewContent(signature, tx) {

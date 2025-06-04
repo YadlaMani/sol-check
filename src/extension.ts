@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
-import { Connection, clusterApiUrl } from "@solana/web3.js";
+import { Connection, clusterApiUrl, PublicKey } from "@solana/web3.js";
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "sol-check" is now active!');
   const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 
-  const disposable = vscode.commands.registerCommand(
+  const signatureInfoCommand = vscode.commands.registerCommand(
     "sol-check.lookupSignature",
     async () => {
       const signature = await vscode.window.showInputBox({
@@ -40,8 +40,44 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }
   );
+  const tokenInfoCommand = vscode.commands.registerCommand(
+    "sol-check.lookupToken",
+    async () => {
+      const mint = await vscode.window.showInputBox({
+        prompt: "Enter Token Mint Address",
+        placeHolder: "Eg: So11111111111111111111111111111111111111112",
+      });
 
-  context.subscriptions.push(disposable);
+      if (!mint) {
+        vscode.window.showErrorMessage("No mint address provided.");
+        return;
+      }
+
+      try {
+        const tokenInfo = await connection.getParsedAccountInfo(
+          new PublicKey(mint)
+        );
+
+        if (!tokenInfo || !tokenInfo.value) {
+          vscode.window.showErrorMessage("Token not found.");
+          return;
+        }
+
+        const panel = vscode.window.createWebviewPanel(
+          "tokenInfo",
+          "Solana Token Info",
+          vscode.ViewColumn.One,
+          { enableScripts: true }
+        );
+
+        panel.webview.html = getWebviewContent(mint, tokenInfo.value);
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error: ${error}`);
+      }
+    }
+  );
+
+  context.subscriptions.push(tokenInfoCommand, signatureInfoCommand);
 }
 
 export function deactivate() {}
