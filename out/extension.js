@@ -43,7 +43,7 @@ const web3_js_1 = require("@solana/web3.js");
 const webview_1 = __importDefault(require("./webview"));
 function activate(context) {
     console.log('Congratulations, your extension "sol-check" is now active!');
-    const connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)("devnet"), "confirmed");
+    let connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)("devnet"), "confirmed");
     const signatureInfoCommand = vscode.commands.registerCommand("sol-check.lookupSignature", async () => {
         const signature = await vscode.window.showInputBox({
             prompt: "Enter Solana Transaction Signature",
@@ -90,7 +90,21 @@ function activate(context) {
             vscode.window.showErrorMessage(`Error: ${error}`);
         }
     });
-    context.subscriptions.push(tokenInfoCommand, signatureInfoCommand);
+    const changeClusterCommand = vscode.commands.registerCommand("sol-check.changeCluster", async () => {
+        const cluster = await vscode.window.showQuickPick(["devnet", "testnet", "mainnet-beta"], {
+            placeHolder: "Select Solana Cluster",
+        });
+        if (!cluster) {
+            vscode.window.showErrorMessage("No cluster selected.");
+            return;
+        }
+        connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)(cluster), "confirmed");
+    });
+    const showClusterCommand = vscode.commands.registerCommand("sol-check.showCluster", async () => {
+        const currentCluster = connection.rpcEndpoint;
+        vscode.window.showInformationMessage(`Current Solana Cluster: ${currentCluster}`);
+    });
+    context.subscriptions.push(tokenInfoCommand, signatureInfoCommand, changeClusterCommand, showClusterCommand);
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

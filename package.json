@@ -20,6 +20,14 @@
       {
         "command": "sol-check.lookupToken",
         "title": "Solana: Lookup Token"
+      },
+      {
+        "command": "sol-check.changeCluster",
+        "title": "Solana: Change Cluster"
+      },
+      {
+        "command": "sol-check.showCluster",
+        "title": "Solana: Show Current Cluster"
       }
     ]
   },
