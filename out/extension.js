@@ -32,11 +32,15 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = __importStar(require("vscode"));
 const web3_js_1 = require("@solana/web3.js");
+const webview_1 = __importDefault(require("./webview"));
 function activate(context) {
     console.log('Congratulations, your extension "sol-check" is now active!');
     const connection = new web3_js_1.Connection((0, web3_js_1.clusterApiUrl)("devnet"), "confirmed");
@@ -58,7 +62,7 @@ function activate(context) {
                 return;
             }
             const panel = vscode.window.createWebviewPanel("solanaExplorer", "Solana Signature Details", vscode.ViewColumn.One, { enableScripts: true });
-            panel.webview.html = getWebviewContent(signature, tx);
+            panel.webview.html = (0, webview_1.default)(signature, tx);
         }
         catch (error) {
             vscode.window.showErrorMessage(`Failed to fetch transaction: ${error}`);
@@ -80,7 +84,7 @@ function activate(context) {
                 return;
             }
             const panel = vscode.window.createWebviewPanel("tokenInfo", "Solana Token Info", vscode.ViewColumn.One, { enableScripts: true });
-            panel.webview.html = getWebviewContent(mint, tokenInfo.value);
+            panel.webview.html = (0, webview_1.default)(mint, tokenInfo.value);
         }
         catch (error) {
             vscode.window.showErrorMessage(`Error: ${error}`);
@@ -89,35 +93,4 @@ function activate(context) {
     context.subscriptions.push(tokenInfoCommand, signatureInfoCommand);
 }
 function deactivate() { }
-function getWebviewContent(signature, tx) {
-    return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Solana Transaction</title>
-      <style>
-        body {
-          font-family: monospace;
-          background-color: #1e1e1e;
-          color: #d4d4d4;
-          padding: 20px;
-        }
-        pre {
-          background-color: #2d2d2d;
-          padding: 15px;
-          overflow-x: auto;
-          border-radius: 8px;
-        }
-      </style>
-    </head>
-    <body>
-      <h2>Transaction Signature</h2>
-      <p><code>${signature}</code></p>
-      <h2>Transaction Details</h2>
-      <pre>${JSON.stringify(tx, null, 2)}</pre>
-    </body>
-    </html>
-  `;
-}
 //# sourceMappingURL=extension.js.map
