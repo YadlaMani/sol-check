@@ -1,14 +1,8 @@
 # Sol-Check
 
-Sol-Check is a Visual Studio Code extension designed to enhance your Solidity development workflow. It provides real-time linting, syntax highlighting, and code analysis for Solidity smart contracts, helping you write secure and efficient code.
+**Sol-Check** is a Visual Studio Code extension that supercharges your Solana development workflow. Instantly view transaction details and token mint information directly in your editor—no need to open Solscan or other explorers. Whether you're debugging, auditing, or building dApps, Sol-Check helps you get real-time insights into Solana transactions and tokens, right inside VS Code.
 
-## Features
-
-- **Real-time Linting:** Instantly detects errors and warnings in your Solidity code.
-- **Syntax Highlighting:** Improved readability with advanced syntax highlighting.
-- **Code Analysis:** Identifies potential security vulnerabilities and best practice violations.
-- **Quick Fixes:** Offers suggestions and quick fixes for common issues.
-- **Seamless Integration:** Works out-of-the-box with your existing Solidity projects.
+---
 
 ## Installation
 
@@ -17,20 +11,43 @@ Sol-Check is a Visual Studio Code extension designed to enhance your Solidity de
 3. Search for `Sol-Check`.
 4. Click **Install**.
 
+---
+
 ## Usage
 
-- Open any `.sol` file to activate the extension.
-- View linting results and suggestions directly in the editor.
-- Use the command palette (`Ctrl+Shift+P`) and search for `Sol-Check` commands for additional features.
+- Open the command palette (`Ctrl+Shift+P`).
+- Search for and run any `Sol-Check` command (see below).
+- Enter a Solana transaction signature or token mint address when prompted.
+- View transaction or token details in a webview panel inside VS Code.
 
-## Requirements
+---
 
-- Visual Studio Code version 1.60.0 or higher.
-- Node.js (for some advanced features).
+## Commands
 
-## Contributing
+| Command                        | Description                                               |
+| ------------------------------ | --------------------------------------------------------- |
+| `Solana: Lookup Signature`     | Enter a transaction signature to view transaction details |
+| `Solana: Lookup Token`         | Enter a token mint address to view token info             |
+| `Solana: Change Cluster`       | Switch between devnet, testnet, and mainnet-beta          |
+| `Solana: Show Current Cluster` | Show the currently selected Solana cluster                |
 
-Contributions are welcome! Please open issues or submit pull requests on [GitHub](https://github.com/your-repo/sol-check).
+---
+
+## What Does It Do?
+
+- **Transaction Lookup:** Instantly fetch and display Solana transaction details (status, fee, accounts, instructions, etc.) by entering a transaction signature.
+- **Token Lookup:** View parsed token mint information by entering a token mint address.
+- **Cluster Switching:** Easily switch between Solana clusters (devnet, testnet, mainnet-beta) for your queries.
+- **All results are shown in a rich, interactive webview panel inside VS Code.**
+
+---
+
+## Links
+
+- [GitHub Repository](https://github.com/your-repo/sol-check) – Star, fork, or contribute!
+- [Twitter](https://twitter.com/your-twitter-handle) – Report bugs, suggest features, or just say hi!
+
+---
 
 ## License
 

@@ -3,7 +3,8 @@
   "displayName": "Sol Check",
   "publisher": "maniyadla1",
   "description": "Supercharge your Solana development workflow with this VS Code extension that lets you instantly view transaction details and wallet address information without ever leaving your editor. Whether you're debugging, auditing, or building dApps, skip the hassle of opening Solscan or other explorers—just hover or paste a transaction hash or address to get real-time insights directly in your IDE. Fast, seamless, and built for developers who move at the speed of the chain.",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "icon": "assests/icon.png",
   "engines": {
     "vscode": "^1.100.0"
   },
