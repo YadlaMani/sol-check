@@ -1,72 +1,37 @@
-# sol-check README
+# Sol-Check
 
-This is the README for your extension "sol-check". After writing up a brief description, we recommend including the following sections.
+Sol-Check is a Visual Studio Code extension designed to enhance your Solidity development workflow. It provides real-time linting, syntax highlighting, and code analysis for Solidity smart contracts, helping you write secure and efficient code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Real-time Linting:** Instantly detects errors and warnings in your Solidity code.
+- **Syntax Highlighting:** Improved readability with advanced syntax highlighting.
+- **Code Analysis:** Identifies potential security vulnerabilities and best practice violations.
+- **Quick Fixes:** Offers suggestions and quick fixes for common issues.
+- **Seamless Integration:** Works out-of-the-box with your existing Solidity projects.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open Visual Studio Code.
+2. Go to the Extensions view (`Ctrl+Shift+X`).
+3. Search for `Sol-Check`.
+4. Click **Install**.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
+
+- Open any `.sol` file to activate the extension.
+- View linting results and suggestions directly in the editor.
+- Use the command palette (`Ctrl+Shift+P`) and search for `Sol-Check` commands for additional features.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Visual Studio Code version 1.60.0 or higher.
+- Node.js (for some advanced features).
 
-## Extension Settings
+## Contributing
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Contributions are welcome! Please open issues or submit pull requests on [GitHub](https://github.com/your-repo/sol-check).
 
-For example:
+## License
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
-# sol-check
+This project is licensed under the MIT License.
