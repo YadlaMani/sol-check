@@ -44,8 +44,8 @@
 
 ## Links
 
-- [GitHub Repository](https://github.com/your-repo/sol-check) – Star, fork, or contribute!
-- [Twitter](https://twitter.com/your-twitter-handle) – Report bugs, suggest features, or just say hi!
+- [GitHub Repository](https://github.com/YadlaMani/sol-check) – Star, fork, or contribute!
+- [Twitter](https://x.com/mani_yadla_) – Report bugs, suggest features, or just say hi!
 
 ---
 
